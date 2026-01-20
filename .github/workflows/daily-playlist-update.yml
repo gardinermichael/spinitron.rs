@@ -39,6 +39,11 @@ jobs:
     - name: Build application
       run: cargo build --release
       
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+      
     - name: Run playlist update
       env:
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
@@ -53,7 +58,12 @@ jobs:
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
         SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
         SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-      run: python scripts/update_website.py
+      run: |
+        # Generate playlists JSONL file
+        ./target/release/spinitron-scraper --list-playlists > docs/playlists.jsonl
+        
+        # Generate static HTML from the JSONL (this will OVERWRITE docs/index.html)
+        python scripts/generate_static_html.py docs/playlists.jsonl
         
     - name: Upload cache as artifact
       uses: actions/upload-artifact@v4
