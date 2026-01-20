@@ -1,12 +1,15 @@
-[stations.KALX]
-ignores = ["Arts In Review"]
+# [stations.KALX]
+# ignores = ["Arts In Review"]
 
-[stations.KPOO]
-ignores = [
-    "KPOO San Francisco .*",
-    "KPOO Community News",
-    "Keep The Praise Gospel Show",
-    ".*Emmit Powell Gospel Caravan.*"
-]
+# [stations.KPOO]
+# ignores = [
+#     "KPOO San Francisco .*",
+#     "KPOO Community News",
+#     "Keep The Praise Gospel Show",
+#     ".*Emmit Powell Gospel Caravan.*"
+# ]
 
-[stations.Psyched]
+# [stations.Psyched]
+
+
+[stations.KXLU]
